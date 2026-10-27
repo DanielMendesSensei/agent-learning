@@ -1,0 +1,12 @@
+# Rendered by agent-learning install.py; edits here are overwritten on the next install.
+[Unit]
+Description=Fires the task-observer weekly skill review (agent-learning)
+
+[Timer]
+OnCalendar={{CALENDAR}}
+Persistent=true
+RandomizedDelaySec=15min
+Unit=weekly-skill-review@full.service
+
+[Install]
+WantedBy=timers.target

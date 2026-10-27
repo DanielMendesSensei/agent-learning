@@ -1,0 +1,36 @@
+# JSON-Schema (YAML form) for knowledge-unit frontmatter.
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: KnowledgeUnitFrontmatter
+type: object
+required: [id, kind, domain, title, summary, triggers, confidence, evidence, created, updated, status]
+properties:
+  id:          { type: string, pattern: "^[a-z0-9-]+(\\.[a-z0-9-]+)+$" }
+  kind:        { enum: [playbook, pattern, pitfall-set, meta-skill, reference, protocol] }
+  domain:      { type: string, description: "key from vocabulary.yaml#domains or 'meta'" }
+  title:       { type: string, maxLength: 90 }
+  summary:     { type: string, maxLength: 200, description: "one line; what + when" }
+  triggers:
+    type: array
+    minItems: 1
+    items: { type: string, description: "task condition using placeholders, matchable by an LLM" }
+  tags:        { type: array, items: { type: string } }
+  confidence:  { enum: [high, medium, low] }
+  evidence:    { type: array, items: { type: string } }
+  version_pins:
+    type: object
+    additionalProperties: { type: string }
+    description: "package/runtime → version where facts were verified"
+  prerequisites: { type: array, items: { type: string, description: "@unit_id or skill" } }
+  related:     { type: array, items: { type: string } }
+  status:      { enum: [active, draft, deprecated] }
+  superseded_by: { type: string }
+  created:     { type: string, format: date }
+  updated:     { type: string, format: date }
+  changelog:   { type: array, items: { type: string } }
+
+body_sections_required_order:
+  playbook:    [Context, Outcome, Procedure, Parameters, Invariants, Pitfalls, Verification, Related]
+  pattern:     [Context, Problem, Solution, Structure, Parameters, Invariants, Trade-offs, Related]
+  pitfall-set: [Context, Pitfalls, Related]
+  meta-skill:  [Context, Principle, Procedure, Signals, Anti-patterns, Related]
+  reference:   [Context, Table, Related]

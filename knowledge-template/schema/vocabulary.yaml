@@ -1,0 +1,49 @@
+# Controlled vocabulary + placeholder grammar. All units MUST use these tokens.
+version: 1
+updated: 2026-10-04
+
+placeholder_grammar:
+  "{name}":        required scalar slot (substitute with a concrete value of the task)
+  "{name?}":       optional scalar slot
+  "{name=default}": slot with default value
+  "[name]":        collection / list of {name}
+  "[name]{n}":     collection of exactly/approx n items
+  "(a | b | c)":   exclusive choice
+  "<type>":        type annotation (e.g. <number>, <ms>, <m>, <rad>, <bool>, <id>)
+  "name := expr":  definition
+  "A → B":         transition, flow or causality
+  "A ⇒ B":         implication / rule
+  "@unit_id":      cross-reference to another knowledge unit
+  "§n":            section reference inside the same unit
+  "∀ / ∃ / ∧ / ∨ / ¬": logic operators
+  "≈ / ≤ / ≥ / ∝": quantitative relations
+
+normative_keywords:   # RFC 2119
+  MUST: absolute requirement
+  SHOULD: strong default; deviation needs a reason
+  MAY: optional
+  NEVER: absolute prohibition
+
+kinds:
+  playbook:     end-to-end procedure to achieve {outcome}
+  pattern:      reusable structural solution to {recurring_problem}
+  pitfall-set:  failure modes + root causes + fixes, incl. version-pinned facts
+  meta-skill:   cross-domain method of working/thinking
+  reference:    compact lookup table / parameter set
+  protocol:     operating rules for the learning base itself
+
+confidence:
+  high:   verified at runtime/measurement in a real build
+  medium: verified partially or in one context only
+  low:    plausible, unverified; MUST be re-validated before reliance
+
+evidence_types:
+  - runtime-verified        # executed and observed
+  - headless-gpu-verified   # rendered + inspected via automated browser
+  - test-verified           # automated test/assertion
+  - docs-verified           # checked against official source/docs at stated date
+  - owner-recognized        # owner explicitly approved the resulting work
+
+domains: {}   # {domain}: {scope} — add when creating domains/{domain}/_domain.md (PROTOCOL.md §6)
+
+tags: []      # extend as needed; keep lowercase-kebab

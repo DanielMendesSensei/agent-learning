@@ -1,0 +1,5 @@
+{
+  "name": "agent-learning",
+  "version": "0.1.0",
+  "description": "Exposes task-observer to the scheduled weekly review, which runs Claude Code without user settings."
+}

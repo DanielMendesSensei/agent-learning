@@ -1,0 +1,9 @@
+# Registry of all knowledge units. LLMs: match {current_task} against triggers/tags, load only matches.
+version: 1
+owner: "{owner_name}"   # set once; PROTOCOL.md §1 reads {owner} from here
+language: en
+updated: 2026-10-12
+read_first: [PROTOCOL.md, schema/vocabulary.yaml]
+
+# entry := {id, path, kind, domain, confidence, status, tags[], triggers[]}
+units: []

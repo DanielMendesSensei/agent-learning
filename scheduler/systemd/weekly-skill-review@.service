@@ -1,0 +1,11 @@
+# Rendered by agent-learning install.py; edits here are overwritten on the next install.
+[Unit]
+Description=task-observer weekly skill review (agent-learning), mode %i
+
+[Service]
+Type=oneshot
+Environment="AGENT_LEARNING_HOME={{ROOT}}"
+Environment="AGENT_LEARNING_ENGINE={{ENGINE}}"
+ExecStart=/bin/bash "{{SCRIPT}}" %i
+TimeoutStartSec=3h
+Nice=10

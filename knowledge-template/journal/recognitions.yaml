@@ -1,0 +1,2 @@
+# Append-only. One entry per owner recognition event.
+# schema: {date, signal, work: {summary, artifacts[]}, units_created[], units_updated[], notes?}
